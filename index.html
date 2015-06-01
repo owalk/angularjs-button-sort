@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="App" >
+<head>
+  <meta charset="utf-8">
+  <title>app</title>
+  <script>document.write("<base href=\"" + document.location + "\" />");</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+  <script src="app.js"></script>
+</head>
+<body ng-controller="appCtrl">
+
+  <button type="button" ng-click="reload()"> {{button.text}} </button>
+
+  <div ng-show="showBool">
+    <button type="button" ng-click="sortFirst()">Sort by first name </button>
+    <button type="button" ng-click="sortLast()">Sort by last name </button>
+    <button type="button" ng-click="reOrder()">Restore order </button>
+
+    <ol>
+      <div ng-switch on="sortOrder">
+
+       <div ng-switch-when="first">
+        <li ng-repeat="list in list | orderBy:'first'">
+          {{list.first}} {{list.last}}
+         </li>
+       </div>
+
+      <div ng-switch-when="last">
+        <li ng-repeat="list in list | orderBy:'last'">
+        {{list.first}} {{list.last}}
+        </li>
+      </div>
+
+       <div ng-switch-default> 
+         <li ng-repeat="list in list">
+           {{list.first}} {{list.last}}
+         </li>
+       </div>
+
+      </div> <!-- end sortOrder div -->
+    </ol>
+  </div> <!-- end showBool div  -->
+
+</body>
+</html>
